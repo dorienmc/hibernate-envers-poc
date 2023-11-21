@@ -27,8 +27,13 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    public void delete(Book book){
-        bookRepository.delete(book);
+    public boolean delete(UUID bookId){
+        Book book = findById(bookId);
+        if (book != null) {
+            bookRepository.delete(book);
+            return true;
+        }
+        return false;
     }
 
     public Book findById(UUID id) {

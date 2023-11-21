@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import com.example.graphqlserver.entity.Author;
 import com.example.graphqlserver.entity.Book;
 import com.example.graphqlserver.input.CreateBookInput;
+import com.example.graphqlserver.input.DeleteBookInput;
+import com.example.graphqlserver.input.UpdateBookInput;
 import com.example.graphqlserver.service.BookService;
 
 /**
@@ -40,5 +42,18 @@ public class BookController {
     @MutationMapping
     public Book createBook(@Argument CreateBookInput input) {
         return bookService.create(Book.of(input));
+    }
+
+    @MutationMapping
+    public Book updateBook(@Argument UpdateBookInput input) {
+        Book book = bookService.findById(input.id());
+        if(input.name() != null) { book.setName(input.name()); }
+        if(input.pageCount() >= 0) { book.setPageCount(input.pageCount()); }
+        return bookService.update(book);
+    }
+
+    @MutationMapping
+    public boolean deleteBook(@Argument DeleteBookInput input) {
+        return bookService.delete(input.id());
     }
 }

@@ -32,10 +32,36 @@ input CreateAuthorWithBooksInput {
     books: [CreateBookInput]
 }
 
+input UpdateBookInput {
+    id: ID!
+    name: String
+    pageCount: Int
+}
+
+input DeleteBookInput {
+    id: ID!
+}
+
+input UpdateAuthorInput {
+    id: ID!
+    firstName: String
+    lastName: String
+}
+
+input DeleteAuthorInput {
+    id: ID!
+}
+
 type Mutation {
     initialize: [Book]
 
     createAuthor(input: CreateAuthorInput): Author
     createBook(input: CreateBookInput): Book
     createAuthorWithBooks(input: CreateAuthorWithBooksInput): Author!
+
+    updateAuthor(input: UpdateAuthorInput): Author!
+    deleteAuthor(input: DeleteAuthorInput): Boolean!
+
+    updateBook(input: UpdateBookInput): Book!
+    deleteBook(input: DeleteBookInput): Boolean!
 }

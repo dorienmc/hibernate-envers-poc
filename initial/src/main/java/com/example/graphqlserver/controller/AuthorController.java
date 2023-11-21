@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 
 import com.example.graphqlserver.entity.Author;
 import com.example.graphqlserver.input.CreateAuthorInput;
+import com.example.graphqlserver.input.DeleteBookInput;
+import com.example.graphqlserver.input.UpdateAuthorInput;
 import com.example.graphqlserver.service.AuthorService;
 
 /**
@@ -34,4 +36,16 @@ public class AuthorController {
         return authorService.create(Author.of(input));
     }
 
+    @MutationMapping
+    public Author updateAuthor(@Argument UpdateAuthorInput input) {
+        Author author = authorService.findById(input.id());
+        if(input.firstName() != null) { author.setFirstName(input.firstName()); }
+        if(input.lastName() != null) { author.setLastName(input.lastName()); }
+        return authorService.update(author);
+    }
+
+    @MutationMapping
+    public boolean deleteAuthor(@Argument DeleteBookInput input) {
+        return authorService.delete(input.id());
+    }
 }

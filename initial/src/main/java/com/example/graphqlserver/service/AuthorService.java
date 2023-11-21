@@ -27,8 +27,13 @@ public class AuthorService {
         return authorRepository.save(author);
     }
 
-    public void delete(Author author){
-        authorRepository.delete(author);
+    public boolean delete(UUID authorId){
+        Author author = findById(authorId);
+        if (author != null) {
+            authorRepository.delete(author);
+            return true;
+        }
+        return false;
     }
 
     public Author findById(UUID id) {
