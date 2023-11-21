@@ -3,6 +3,7 @@ package com.example.graphqlserver.entity;
 import java.util.List;
 import java.util.UUID;
 
+import com.example.graphqlserver.input.CreateAuthorInput;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -32,6 +33,10 @@ public class Author {
     }
 
     public Author() {
+    }
+
+    public static Author of(CreateAuthorInput input) {
+        return new Author(input.firstName(), input.lastName());
     }
 
     public String getFirstName() {

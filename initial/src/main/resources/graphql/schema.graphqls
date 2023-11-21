@@ -17,6 +17,25 @@ type Author {
     lastName: String
 }
 
+input CreateAuthorInput {
+    firstName: String
+    lastName: String
+}
+
+input CreateBookInput {
+    name: String
+    pageCount: Int
+}
+
+input CreateAuthorWithBooksInput {
+    author: CreateAuthorInput
+    books: [CreateBookInput]
+}
+
 type Mutation {
     initialize: [Book]
+
+    createAuthor(input: CreateAuthorInput): Author
+    createBook(input: CreateBookInput): Book
+    createAuthorWithBooks(input: CreateAuthorWithBooksInput): Author!
 }

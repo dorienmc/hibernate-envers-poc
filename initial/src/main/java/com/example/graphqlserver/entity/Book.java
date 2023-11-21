@@ -2,6 +2,7 @@ package com.example.graphqlserver.entity;
 
 import java.util.UUID;
 
+import com.example.graphqlserver.input.CreateBookInput;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -35,6 +36,10 @@ public class Book {
 
     public Book() {
 
+    }
+
+    public static Book of(CreateBookInput bookInput) {
+        return new Book(bookInput.name(), bookInput.pageCount());
     }
 
     public String getName() {
