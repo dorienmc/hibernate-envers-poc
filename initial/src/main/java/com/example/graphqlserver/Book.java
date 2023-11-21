@@ -19,4 +19,8 @@ public record Book(String id, String name, int pageCount, String authorId) {
     public static Book getById(String id) {
         return books.stream().filter(b -> b.id().equals(id)).findFirst().orElse(null);
     }
+
+    public static List<Book> findAll() {
+        return books;
+    }
 }

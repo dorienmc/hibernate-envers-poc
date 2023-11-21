@@ -17,4 +17,8 @@ public record Author(String id, String firstName, String lastName) {
     public static Author getById(String id) {
         return authors.stream().filter( a -> a.id().equals(id)).findFirst().orElse(null);
     }
+
+    public static List<Author> findAll() {
+        return authors;
+    }
 }
