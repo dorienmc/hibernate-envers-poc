@@ -5,6 +5,8 @@ import java.util.UUID;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -22,8 +24,9 @@ public class Book {
     private String name;
     @Column
     private int pageCount;
-    @Column
-    private UUID authorId;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
 
     public Book(String name, int pageCount) {
         this.name = name;
@@ -50,11 +53,11 @@ public class Book {
         this.pageCount = pageCount;
     }
 
-    public UUID getAuthorId() {
-        return authorId;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(UUID authorId) {
-        this.authorId = authorId;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }

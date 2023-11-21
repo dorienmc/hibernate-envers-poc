@@ -1,10 +1,12 @@
 package com.example.graphqlserver.entity;
 
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -21,7 +23,9 @@ public class Author {
     @Column
     private String lastName;
 
-    public Author(String tag, String firstName, String lastName) {
+    @OneToMany(mappedBy = "author")
+    private List<Book> books;
+
     public Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;

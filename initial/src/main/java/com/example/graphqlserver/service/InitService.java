@@ -33,7 +33,11 @@ public class InitService {
     );
 
     public void initialize() {
-        initAuthors.forEach( au -> authorService.create(au));
-        initBooks.forEach( book -> bookService.create(book));
+        List<Author> authors = initAuthors.stream().map(authorService::create).toList();
+        for (int i = 0; i < initBooks.size(); i++) {
+            Book b = initBooks.get(i);
+            b.setAuthor(authors.get(i));
+            bookService.create(b);
+        }
     }
 }
