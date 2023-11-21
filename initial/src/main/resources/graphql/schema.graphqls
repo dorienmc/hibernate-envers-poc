@@ -16,3 +16,7 @@ type Author {
     firstName: String
     lastName: String
 }
+
+type Mutation {
+    initialize: [Book]
+}
