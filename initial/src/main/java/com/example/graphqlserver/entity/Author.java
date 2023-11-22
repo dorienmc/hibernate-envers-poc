@@ -12,10 +12,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 /**
  * @author Dorien Lorijn
  */
+@Audited( withModifiedFlag = true )
 @Entity
 @Table(name = "author")
 public class Author {
@@ -24,12 +26,12 @@ public class Author {
     @GeneratedValue
     private UUID id;
 
-    @Audited
     @Column
     private String firstName;
     @Column
     private String lastName;
 
+    @NotAudited
     @OneToMany(mappedBy = "author")
     private List<Book> books;
 
