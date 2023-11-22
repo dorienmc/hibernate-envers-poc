@@ -11,6 +11,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import org.hibernate.envers.Audited;
+
 /**
  * @author Dorien Lorijn
  */
@@ -21,6 +23,8 @@ public class Author {
     @Id
     @GeneratedValue
     private UUID id;
+
+    @Audited
     @Column
     private String firstName;
     @Column
