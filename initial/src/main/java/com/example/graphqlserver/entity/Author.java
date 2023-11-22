@@ -6,6 +6,7 @@ import java.util.UUID;
 import com.example.graphqlserver.input.CreateAuthorInput;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -18,7 +19,8 @@ import jakarta.persistence.Table;
 public class Author {
 
     @Id
-    private UUID id = UUID.randomUUID();
+    @GeneratedValue
+    private UUID id;
     @Column
     private String firstName;
     @Column

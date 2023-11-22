@@ -5,6 +5,7 @@ import java.util.UUID;
 import com.example.graphqlserver.input.CreateBookInput;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -20,7 +21,8 @@ import jakarta.persistence.Table;
 public class Book {
 
     @Id
-    private UUID id = UUID.randomUUID();
+    @GeneratedValue
+    private UUID id;
     @Column
     private String name;
     @Column

@@ -9,7 +9,7 @@ import com.example.graphqlserver.entity.Book;
 import com.example.graphqlserver.repository.BookRepository;
 
 /**
- * @book Dorien Lorijn
+ * Dorien Lorijn
  */
 @Component
 public class BookService {
