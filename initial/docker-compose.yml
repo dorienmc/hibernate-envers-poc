@@ -4,8 +4,11 @@ services:
     build: .
     ports:
       - '8080:8080'
+      - '5005:5005'
     depends_on:
       - mysql
+    environment:
+      - DEBUG=true
   mysql:
     image: mysql:8
     container_name: mysql
