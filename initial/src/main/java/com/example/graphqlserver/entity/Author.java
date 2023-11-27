@@ -3,9 +3,11 @@ package com.example.graphqlserver.entity;
 import java.util.List;
 import java.util.UUID;
 
+import com.example.graphqlserver.AuditTrailListener;
 import com.example.graphqlserver.input.CreateAuthorInput;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -19,9 +21,10 @@ import org.hibernate.envers.NotAudited;
  * @author Dorien Lorijn
  */
 @Audited( withModifiedFlag = true )
+@EntityListeners(AuditTrailListener.class)
 @Entity
 @Table(name = "author")
-public class Author {
+public class Author implements BaseEntity {
 
     @Id
     @GeneratedValue
@@ -65,5 +68,15 @@ public class Author {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public UUID getId() {
+        return id;
+    }
+
+    @Override
+    public long getVersion() {
+        return version;
     }
 }

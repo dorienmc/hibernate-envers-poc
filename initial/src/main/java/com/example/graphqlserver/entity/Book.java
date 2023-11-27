@@ -2,9 +2,11 @@ package com.example.graphqlserver.entity;
 
 import java.util.UUID;
 
+import com.example.graphqlserver.AuditTrailListener;
 import com.example.graphqlserver.input.CreateBookInput;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -17,9 +19,10 @@ import jakarta.persistence.Version;
  *
  * @author Dorien Lorijn
  */
+@EntityListeners(AuditTrailListener.class)
 @Entity
 @Table(name = "books")
-public class Book {
+public class Book implements BaseEntity {
 
     @Id
     @GeneratedValue
@@ -70,5 +73,15 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    @Override
+    public UUID getId() {
+        return id;
+    }
+
+    @Override
+    public long getVersion() {
+        return version;
     }
 }
