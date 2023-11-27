@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
@@ -25,6 +26,9 @@ public class Author {
     @Id
     @GeneratedValue
     private UUID id;
+
+    @Version
+    private long version;
 
     @Column
     private String firstName;

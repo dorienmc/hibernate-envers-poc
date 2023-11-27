@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 /**
  * Book
@@ -23,6 +24,9 @@ public class Book {
     @Id
     @GeneratedValue
     private UUID id;
+
+    @Version
+    private long version;
     @Column
     private String name;
     @Column
